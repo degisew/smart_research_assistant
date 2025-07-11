@@ -463,6 +463,7 @@ dependencies = [
     { name = "langchain" },
     { name = "langchain-community" },
     { name = "langchain-groq" },
+    { name = "langchain-tavily" },
     { name = "langchainhub" },
     { name = "python-dotenv" },
     { name = "requests" },
@@ -473,6 +474,7 @@ requires-dist = [
     { name = "langchain", specifier = ">=0.3.26" },
     { name = "langchain-community", specifier = ">=0.3.27" },
     { name = "langchain-groq", specifier = ">=0.3.5" },
+    { name = "langchain-tavily", specifier = ">=0.2.7" },
     { name = "langchainhub", specifier = ">=0.1.21" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "requests", specifier = ">=2.32.4" },
@@ -489,6 +491,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/45/05/3fb16fcc1aedb63cee7d7615de501538e927ad632e5cd5fb8538e7cf077b/langchain_groq-0.3.5.tar.gz", hash = "sha256:aadef09287847ff6b02bc6d0d070936e0c37a8d82b4724495b650b069c9fc4e6", size = 23280, upload-time = "2025-07-01T17:29:23.493Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ba/b0/1381a66f8b53e4e3e7389d4e2ac7a528023d0d41b31ebe1397970e83114f/langchain_groq-0.3.5-py3-none-any.whl", hash = "sha256:0f86559ccd3838015aa8e6ff3047ae08d6204eb3fe2e8386d21a21d907c2acf8", size = 15958, upload-time = "2025-07-01T17:29:22.478Z" },
+]
+
+[[package]]
+name = "langchain-tavily"
+version = "0.2.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "langchain" },
+    { name = "langchain-core" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6b/1b/c2d918b47a8e69aeb8e2587a309313282af535262bc7039976afaedde1bf/langchain_tavily-0.2.7.tar.gz", hash = "sha256:94426779de155ee3edcce71444ed31b2723abb0092351a517ffdd07134415fd5", size = 21191, upload-time = "2025-07-07T14:15:34.591Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c9/7e/5292296d860ba0d9f7ffa25fa29f3f751245057223aa73610a84e441e25d/langchain_tavily-0.2.7-py3-none-any.whl", hash = "sha256:14b6c3be3f11c318b498570dbfe642997008f7b1a5f6dffbcd9b501db1ee1950", size = 25081, upload-time = "2025-07-07T14:15:33.335Z" },
 ]
 
 [[package]]
