@@ -1,5 +1,4 @@
 from langchain import hub
-from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain.agents import (
     create_react_agent,
@@ -7,6 +6,7 @@ from langchain.agents import (
 )
 
 from .agent_tools import search_tool
+from .output_parsers import summary_parser
 
 
 def ReAct_agent(llm):
@@ -39,13 +39,18 @@ def get_user_summary(llm, lnkdn_url):
     Given the linkedin information {info} about the person from, I want you to create:
     1. a short summary
     2. two interesting facts about them
+    \n {format_instructions}
     """
     summary_prompt_template = PromptTemplate(
-        input_variables=["info"], template=summary_template)
+        input_variables=["info"],
+        template=summary_template,
+        partial_variables={
+            "format_instructions": summary_parser.get_format_instructions()}
+    )
 
     # info = get_linkedin_user_profile()
 
-    chain = summary_prompt_template | llm | StrOutputParser()
+    chain = summary_prompt_template | llm | summary_parser
 
     res = chain.invoke(input={"info": lnkdn_url})
 
