@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
+from agents.linkedin_lookup import get_user_summary
 from agents.linkedin_lookup import ReAct_agent
 from config import Config
 
@@ -13,4 +14,5 @@ llm = ChatGroq(
 )
 
 if __name__ == "__main__":
-    print(ReAct_agent(llm))
+    lnkdn_url = ReAct_agent(llm)
+    print(get_user_summary(llm, lnkdn_url))
