@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Get to Know</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@chgibb/css-spinners@2.2.1/css/spinner/three-quarters.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <form id="input_form">
+        <h1>Get to Know</h1>
+        <input type="text" name="name" placeholder="Enter name" />
+        <button id="magic-button" type="submit" class="center">Get Info</button>
+      </form>
+    </header>
+    <div id="spinner" class="spinner">
+      <span class="three-quarters-loader spinner_loader"></span>
+    </div>
+    <main id="result" class="container">
+      <div>
+        <h2>Summary</h2>
+        <p id="summary"></p>
+      </div>
+      <div>
+        <h2>Interesting Facts</h2>
+        <div id="facts"></div>
+      </div>
+      <div>
+        <h2>Ice Breakers</h2>
+        <div id="ice-breakers"></div>
+      </div>
+      <div>
+        <h2>Topics of Interest</h2>
+        <div id="topics-of-interest"></div>
+      </div>
+    </main>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+  </body>
+</html>
