@@ -4,21 +4,24 @@ from langchain.agents import (
     create_react_agent,
     AgentExecutor
 )
+from langchain_groq import ChatGroq
+
+from config import Config
 
 from .agent_tools import search_tool
-from .output_parsers import summary_parser
+from .output_parsers import Parser, summary_parser
 
 
-def ReAct_agent(llm):
-    full_name = "Degisew Mengist Python Developer"
+def ReAct_agent(llm, user_name):
+    # user_name = "Degisew Mengist Python Developer"
 
     template = """
-    Given the person full name {full_name}, I want you to give me the linkedin url.
+    Given the person full name {user_name}, I want you to give me the linkedin url.
     Please Note that your answer should only contain the URL.
     """
 
     prompt_template = PromptTemplate(
-        input_variables=["full_name"], template=template)
+        input_variables=["user_name"], template=template)
 
     tools = [search_tool]
 
@@ -29,12 +32,19 @@ def ReAct_agent(llm):
     executor = AgentExecutor(agent=react_agent, tools=tools, verbose=True)
 
     res = executor.invoke(
-        {"input": prompt_template.format_prompt(full_name=full_name)})
+        {"input": prompt_template.format_prompt(user_name=user_name)})
 
     return res["output"]
 
 
-def get_user_summary(llm, lnkdn_url):
+def get_user_summary(user_name) -> Parser:
+    llm = ChatGroq(
+        model=Config.model,
+        temperature=0.0
+    )
+
+    lnkdn_url = ReAct_agent(llm, user_name)
+
     summary_template = """
     Given the linkedin information {info} about the person from, I want you to create:
     1. a short summary
