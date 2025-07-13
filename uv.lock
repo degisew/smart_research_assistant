@@ -534,6 +534,7 @@ dependencies = [
     { name = "langchain-groq" },
     { name = "langchain-tavily" },
     { name = "langchainhub" },
+    { name = "langsmith" },
     { name = "python-dotenv" },
     { name = "requests" },
 ]
@@ -546,6 +547,7 @@ requires-dist = [
     { name = "langchain-groq", specifier = ">=0.3.5" },
     { name = "langchain-tavily", specifier = ">=0.2.7" },
     { name = "langchainhub", specifier = ">=0.1.21" },
+    { name = "langsmith", specifier = ">=0.4.4" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "requests", specifier = ">=2.32.4" },
 ]

@@ -1,15 +1,16 @@
 const form = document.getElementById("input_form");
 const spinner = document.getElementById("spinner");
 const result = document.getElementById("result");
-const profilePic = document.getElementById("profile-pic");
 const summary = document.getElementById("summary");
-const facts = document.getElementById("facts");
+const background = document.getElementById("background");
+const competitors = document.getElementById("competitors");
+const questions = document.getElementById("questions");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   result.style.display = "none";
-  spinner.style.display = "";
+  spinner.style.display = "block";
 
   const formData = new FormData(form);
 
@@ -24,12 +25,13 @@ form.addEventListener("submit", async (e) => {
     }
 
     const data = await response.json();
+    summary.textContent = data.parsed_data.summary;
+    background.textContent = data.parsed_data.team_background
 
-    profilePic.src = data.picture_url;
-    summary.textContent = data.summary_and_facts.summary;
-    renderList(facts, data.summary_and_facts.facts);
+    renderList(competitors, data.parsed_data.competitors);
+    renderList(questions, data.parsed_data.questions);
 
-    result.style.display = "";
+    result.style.display = "block";
   } catch (err) {
     console.error("Error:", err);
     alert("Something went wrong while processing the form.");
