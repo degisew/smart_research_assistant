@@ -1,6 +1,5 @@
-from flask import Flask, jsonify, request, render_template
-
-from agents.linkedin_lookup import get_user_summary
+from flask import Flask, Response, jsonify, request, render_template
+from chains.llm_chain import generate_company_summary
 
 app = Flask(__name__)
 
@@ -11,12 +10,13 @@ def index():
 
 
 @app.route("/process", methods=["POST"])
-def process():
-    name = request.form["name"]
-    data = get_user_summary(name)
+def process() -> Response:
+    company_name: str = request.form["company_name"]
+    data = generate_company_summary(company_name)
+
     return jsonify(
         {
-            "summary_and_facts": data.to_dict(),
+            "parsed_data": data.to_dict(),
         }
     )
 
